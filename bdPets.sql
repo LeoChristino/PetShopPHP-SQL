@@ -1,4 +1,4 @@
-create database bdPets;
+create database bdPets CHARACTER SET utf8 COLLATE utf8_general_ci;
 use bdPets;
 create table tbAnimal(
     codAnimal int not null auto_increment,
@@ -8,6 +8,4 @@ create table tbAnimal(
     raca varchar(100) not null,
     cor varchar(25) not null,
     nascimento date,
-    primary key(codAnimal)
-);
-desc tbAnimal;
+    primary key(codAnimal))ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;

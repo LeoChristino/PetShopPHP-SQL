@@ -16,18 +16,18 @@
 				</div>
 				
 				<div class="input-field col s12">
-					<input type="text" name="sobrenome" id="sobrenome">
-					<label for="sobrenome">Sobrenome</label>
+					<input type="text" name="especie" id="especie">
+					<label for="especie">Espécie</label>
 				</div>
 				
 				<div class="input-field col s12">
-					<input type="text" name="email" id="email">
-					<label for="email">E-mail</label>
+					<input type="text" name="sexo" id="sexo">
+					<label for="sexo">Sexo</label>
 				</div>
 				
 				<div class="input-field col s12">
-					<input type="text" name="idade" id="idade">
-					<label for="idade">Idade</label>
+					<input type="text" name="raca" id="raca">
+					<label for="raca">Raça</label>
 				</div>
 
 				<button type="submit" name="btn-cadastrar" class="btn">Cadastrar</button>

@@ -10,21 +10,21 @@
 
 	<div class="row">
 		<div class="col s12 m6 push-m3">
-			<h3 class="light">Clientes</h3>
+			<h3 class="light">Animais</h3>
 			<table class="striped">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Sobrenome</th>
-					<th>E-mail</th>
-					<th>Idade</th>
+					<th>Especie</th>
+					<th>Sexo</th>
+					<th>Raça</th>
 				</tr>				
 			</thead>
 			
 			<tbody>
 				<?php 
 
-					$sql = "SELECT * FROM tbClientes";
+					$sql = "SELECT * FROM tbAnimal";
 
 					$resultado = mysqli_query($connection, $sql);
 
@@ -34,17 +34,17 @@
 					?>				
 			
 						<tr>
-							<td><?php echo $dados['nomeCli']; ?></td>
-							<td><?php echo $dados['sobreNomeCli']; ?></td>
-							<td><?php echo $dados['emailCli']; ?></td>
-							<td><?php echo $dados['idadeCli']; ?></td>
+							<td><?php echo $dados['nome']; ?></td>
+							<td><?php echo $dados['especie']; ?></td>
+							<td><?php echo $dados['sexo']; ?></td>
+							<td><?php echo $dados['raca']; ?></td>
 
-							<td><a href="alterar.php?id=<?php echo $dados['codCli']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
+							<td><a href="alterar.php?id=<?php echo $dados['codAnimal']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
 
-							<td><a href="#modal<?php echo $dados['codCli']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
+							<td><a href="#modal<?php echo $dados['codAnimal']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
 
 							<!-- Modal Structure in Materializecss -->
-							  <div id="modal<?php echo $dados['codCli']; ?>" class="modal">
+							  <div id="modal<?php echo $dados['codAnimal']; ?>" class="modal">
 							    <div class="modal-content">
 							      <h4>Aviso.</h4>
 							      <p>Deseja excluir o cliente?</p>
@@ -53,7 +53,7 @@
 							      
 
 							      <form action="php_action/excluir_cliente.php" method="POST">
-							      	<input type="hidden" name="codCli" value="<?php echo $dados['codCli']; ?>">
+							      	<input type="hidden" name="codAnimal" value="<?php echo $dados['codAnimal']; ?>">
 
 							      	<button type="submit" name="btn-excluir" class="btn red">Excluir</button>
 

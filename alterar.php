@@ -47,7 +47,7 @@
 				
 				<div class="input-field col s12">
 					<input type="text" name="raca" id="raca" value="<?php echo $dados['raca']; ?>">
-					<label for="raca">Raçcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</label>
+					<label for="raca">Raça</label>
 				</div>
 
 				<button type="submit" name="btn-alterar" class="btn">Alterar</button>

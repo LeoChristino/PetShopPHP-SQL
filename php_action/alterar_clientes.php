@@ -7,12 +7,12 @@
 	if (isset($_POST['btn-alterar'])) {
 		
 		$nome = mysqli_escape_string($connection,$_POST['nome']);
-		$sobrenome = mysqli_escape_string($connection,$_POST['sobrenome']);
-		$email = mysqli_escape_string($connection,$_POST['email']);
-		$idade = mysqli_escape_string($connection,$_POST['idade']);
-		$codCli = mysqli_escape_string($connection,$_POST['codCli']);
+		$especie = mysqli_escape_string($connection,$_POST['especie']);
+		$sexo = mysqli_escape_string($connection,$_POST['sexo']);
+		$raca = mysqli_escape_string($connection,$_POST['raca']);
+		$codAnimal = mysqli_escape_string($connection,$_POST['codAnimal']);
 
-		$sql = "UPDATE tbClientes SET nomeCli = '$nome', sobreNomeCli = '$sobrenome', emailCli = '$email', idadeCli = '$idade' WHERE codCli = '$codCli'";
+		$sql = "UPDATE tbAnimal SET nome = '$nome', especie = '$especie', sexo = '$sexo', raca = '$raca' WHERE codAnimal = '$codAnimal'";
 
 		if(mysqli_query($connection, $sql)) {
 

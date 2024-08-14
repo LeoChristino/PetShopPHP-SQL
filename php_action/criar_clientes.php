@@ -9,11 +9,11 @@
 		//sanitização
 		
 		$nome = mysqli_escape_string($connection,$_POST['nome']);
-		$sobrenome = mysqli_escape_string($connection,$_POST['sobrenome']);
-		$email = mysqli_escape_string($connection,$_POST['email']);
-		$idade = mysqli_escape_string($connection,$_POST['idade']);
+		$especie = mysqli_escape_string($connection,$_POST['especie']);
+		$sexo = mysqli_escape_string($connection,$_POST['sexo']);
+		$raca = mysqli_escape_string($connection,$_POST['raca']);
 
-		$sql = "INSERT INTO tbClientes(nomeCli,sobreNomeCli,emailCli,idadeCli)VALUES('$nome','$sobrenome','$email','$idade')";
+		$sql = "INSERT INTO tbAnimal(nome,especie,sexo,raca)VALUES('$nome','$especie','$sexo','$raca')";
 
 		if(mysqli_query($connection, $sql)) {
 

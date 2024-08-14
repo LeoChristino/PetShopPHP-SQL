@@ -8,7 +8,7 @@
 				
 		$codCli = mysqli_escape_string($connection,$_POST['codCli']);
 
-		$sql = "DELETE FROM tbClientes WHERE codCli = '$codCli'";
+		$sql = "DELETE FROM tbAnimal WHERE codAnimal = '$codAnimal'";
 
 		if(mysqli_query($connection, $sql)) {
 
