@@ -1,88 +1,87 @@
-<?php 
+<?php
+require_once 'php_action/conexao_bd.php';
 
-	include_once 'php_action/conexao_bd.php';
+// cabeçalho
+require_once 'includes/header.php';
 
-	//cabeçalho
-	include_once 'includes/header.php';
-
-	include_once 'includes/mensagem.php';
+require_once 'includes/mensagem.php';
 ?>
 
-	<div class="row">
-		<div class="col s12 m6 push-m3">
-			<h3 class="light">Animais</h3>
-			<table class="striped">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Especie</th>
-					<th>Sexo</th>
-					<th>Raça</th>
-				</tr>				
-			</thead>
-			
-			<tbody>
-				<?php 
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <h3 class="light">Animais</h3>
+        <table class="striped">
+            <thead>
+                <tr>
+					<th>Cod</th>
+                    <th>Nome</th>
+                    <th>Especie</th>
+                    <th>Sexo</th>
+                    <th>Raca</th>
+                    <th>cor</th>
+                    <th>Nascimento</th>
+                </tr>                
+            </thead>
+            
+            <tbody>
+                <?php 
+                    $sql = "SELECT * FROM tbAnimal";
+                    $resultado = mysqli_query($connection, $sql);
 
-					$sql = "SELECT * FROM tbAnimal";
+                    if (!$resultado) {
+                        die("Erro ao executar query: " . mysqli_error($connection));
+                    }
 
-					$resultado = mysqli_query($connection, $sql);
+                    while($dados = mysqli_fetch_array($resultado)){
+                ?>                
+                    <tr>
+                        <td><?php echo $dados['codAnimal']; ?></td>
+                        <td><?php echo $dados['nome']; ?></td>
+                        <td><?php echo $dados['especie']; ?></td>
+                        <td><?php echo $dados['sexo']; ?></td>
+                        <td><?php echo $dados['raca']; ?></td>
+                        <td><?php echo $dados['cor']; ?></td>
+                        <td><?php echo $dados['nascimento']; ?></td>
 
-						
-					while($dados = mysqli_fetch_array($resultado)){
+                        <td><a href="alterar.php?id=<?php echo $dados['codAnimal']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
 
-					?>				
-			
-						<tr>
-							<td><?php echo $dados['nome']; ?></td>
-							<td><?php echo $dados['especie']; ?></td>
-							<td><?php echo $dados['sexo']; ?></td>
-							<td><?php echo $dados['raca']; ?></td>
+                        <td><a href="#modal<?php echo $dados['codAnimal']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
 
-							<td><a href="alterar.php?id=<?php echo $dados['codAnimal']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
+                        <!-- Modal Structure in Materializecss -->
+                          <div id="modal<?php echo $dados['codAnimal']; ?>" class="modal">
+                            <div class="modal-content">
+                              <h4>Aviso.</h4>
+                              <p>Deseja excluir o cliente?</p>
+                            </div>
+                            <div class="modal-footer">
+                              
 
-							<td><a href="#modal<?php echo $dados['codAnimal']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
+                              <form action="php_action/excluir_cliente.php" method="POST">
+                                <input type="hidden" name="codAnimal" value="<?php echo $dados['codAnimal']; ?>">
 
-							<!-- Modal Structure in Materializecss -->
-							  <div id="modal<?php echo $dados['codAnimal']; ?>" class="modal">
-							    <div class="modal-content">
-							      <h4>Aviso.</h4>
-							      <p>Deseja excluir o cliente?</p>
-							    </div>
-							    <div class="modal-footer">
-							      
+                                <button type="submit" name="btn-excluir" class="btn red">Excluir</button>
 
-							      <form action="php_action/excluir_cliente.php" method="POST">
-							      	<input type="hidden" name="codAnimal" value="<?php echo $dados['codAnimal']; ?>">
+                                <a href="#!" class="modal-close waves-effect waves-green btn">Cancelar</a>
 
-							      	<button type="submit" name="btn-excluir" class="btn red">Excluir</button>
+                              </form>
+                            </div>
+                          </div>
 
-							      	<a href="#!" class="modal-close waves-effect waves-green btn">Cancelar</a>
+                    </tr>
+                    
+                <?php }
 
-							      </form>
-							    </div>
-							  </div>
+                ?>
+                
+            </tbody>
 
-						</tr>
-						
-					<?php }
-
-					?>
-					
-			</tbody>
-
-			</table>
-			<br>
-			<a href="cadastrar.php" class="btn">Adicionar Cliente</a>
-		</div>		
-	</div>
-
+            </table>
+            <br>
+            <a href="cadastrar.php" class="btn">Adicionar Cliente</a>
+        </div>        
+    </div>
 
 <?php 
-	
-	//rodapé
-
-	include_once 'includes/footer.php';
-
-
- ?>
+    // rodapé
+    require_once 'includes/footer.php';
+?>

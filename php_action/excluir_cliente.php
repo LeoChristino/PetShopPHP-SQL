@@ -1,25 +1,26 @@
-<?php 
+<?php
+session_start();
+require_once 'conexao_bd.php';
 
-	session_start();
+if (isset($_POST['btn-excluir'])) {
+    $codAnimal = mysqli_escape_string($connection, $_POST['codAnimal']);
 
-	require_once 'conexao_bd.php';
+    if ($connection) {
+        $sql = "DELETE FROM tbAnimal WHERE codAnimal = '$codAnimal'";
 
-	if (isset($_POST['btn-excluir'])) {
-				
-		$codCli = mysqli_escape_string($connection,$_POST['codCli']);
-
-		$sql = "DELETE FROM tbAnimal WHERE codAnimal = '$codAnimal'";
-
-		if(mysqli_query($connection, $sql)) {
-
-			$_SESSION['mensagem'] = "Excluir com sucesso.";
-
-			header('Location: ../index.php');
-		}
-		else{
-
-			$_SESSION['mensagem'] = "Erro ao excluir.";
-
-			header('Location: ../index.php');	
-		}
-	}
+        if (mysqli_query($connection, $sql)) {
+            $_SESSION['mensagem'] = "Excluído com sucesso.";
+            header('Location: ../index.php');
+            exit;
+        } else {
+            $_SESSION['mensagem'] = "Erro ao excluir.";
+            header('Location: ../index.php');
+            exit;
+        }
+    } else {
+        $_SESSION['mensagem'] = "Erro de conexão com o banco de dados.";
+        header('Location: ../index.php');
+        exit;
+    }
+}
+?>

@@ -9,3 +9,4 @@ create table tbAnimal(
     cor varchar(25) not null,
     nascimento date,
     primary key(codAnimal))ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
+    desc tbAnimal;

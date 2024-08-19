@@ -1,29 +1,23 @@
-<?php 
+<?php
+require_once 'php_action/conexao_bd.php';
 
-	session_start();
+$codAnimal = $_POST['codAnimal'];
 
-	require_once 'conexao_bd.php';
+// Update the database record
+$sql = "UPDATE tbAnimal SET nome = ?, especie = ?, sexo = ?, raca = ?, cor = ?, nascimento = ? WHERE codAnimal = ?";
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("sssssss", $nome, $especie, $sexo, $raca, $cor, $nascimento, $codAnimal);
 
-	if (isset($_POST['btn-alterar'])) {
-		
-		$nome = mysqli_escape_string($connection,$_POST['nome']);
-		$especie = mysqli_escape_string($connection,$_POST['especie']);
-		$sexo = mysqli_escape_string($connection,$_POST['sexo']);
-		$raca = mysqli_escape_string($connection,$_POST['raca']);
-		$codAnimal = mysqli_escape_string($connection,$_POST['codAnimal']);
+// Get the new values from the form submission
+$nome = $_POST['nome'];
+$especie = $_POST['especie'];
+$sexo = $_POST['sexo'];
+$raca = $_POST['raca'];
+$cor = $_POST['cor'];
+$nascimento = $_POST['nascimento'];
 
-		$sql = "UPDATE tbAnimal SET nome = '$nome', especie = '$especie', sexo = '$sexo', raca = '$raca' WHERE codAnimal = '$codAnimal'";
+$stmt->execute();
 
-		if(mysqli_query($connection, $sql)) {
-
-			$_SESSION['mensagem'] = "Alterado com sucesso.";
-
-			header('Location: ../index.php');
-		}
-		else{
-
-			$_SESSION['mensagem'] = "Erro ao alterar.";
-
-			header('Location: ../index.php');	
-		}
-	}
+// Redirect the user back to the original page
+header('Location: index.php');
+exit;
